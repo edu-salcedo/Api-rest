@@ -20,7 +20,7 @@ public class Product {
 	private String description;
 	private String img;
 	private float price;
-	private boolean status;
+	private boolean state;
 	
  
 }

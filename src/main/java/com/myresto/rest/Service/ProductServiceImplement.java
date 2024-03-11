@@ -33,9 +33,8 @@ public class ProductServiceImplement  implements ProductServiceInterface{
 	@Override
 	public Product save(Product product) throws Exception {
 	
-		try {
-		    product = productrepository.save(product);	
-			return product;
+		try {		    
+			return productrepository.save(product);	
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -44,8 +43,14 @@ public class ProductServiceImplement  implements ProductServiceInterface{
 
 	@Override
 	public Product getById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return productrepository.getReferenceById(id);
+	try {
+		Optional<Product> productOptional=productrepository.findById(id);
+		return productOptional.get();
+		
+	} catch (Exception e) {
+		throw new Exception(e.getMessage());
+	}
+		
 	}
 
 	@Override
@@ -55,14 +60,33 @@ public class ProductServiceImplement  implements ProductServiceInterface{
 	}
 
 	@Override
-	public void update(Product product) throws Exception {
-		productrepository.save(product);
+	public Product update(Product product) throws Exception {
+		
+		try {
+			Optional<Product> productOptional=productrepository.findById(product.getId());
+            Product produ= productOptional.get();
+			productrepository.save(product);
+			return produ;
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
 		
 	}
 
 	@Override
-	public void delete(Integer id) throws Exception {
-		productrepository.deleteById(id);;
+	public boolean delete(Integer id) throws Exception {
+		try {
+			if(productrepository.existsById(id))
+			{
+				productrepository.deleteById(id);
+				return true;
+			}
+			else {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
 		
 	}
 

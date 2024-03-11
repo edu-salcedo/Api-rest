@@ -12,7 +12,7 @@ public interface ProductServiceInterface {
    public Product save( Product product) throws Exception;
    public Product getById(Integer id)throws Exception;
    public Optional<Product> get(Integer id)throws Exception;
-   public void update(Product product)throws Exception;
-   public void delete(Integer id)throws Exception;
+   public Product update(Product product)throws Exception;
+   public boolean delete(Integer id)throws Exception;
 
 }
