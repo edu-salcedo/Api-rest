@@ -55,7 +55,7 @@ public class ProductController {
 		}
 	}
 	
-	@PostMapping("/save")
+	@PostMapping("")
 	public void save (@RequestBody Product product) {
 		LOGGER.info("producto {}",product);
 		
@@ -81,12 +81,12 @@ public class ProductController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?>delete(@PathVariable int id, @RequestBody Product product){
+	public ResponseEntity<?>delete(@PathVariable int id){
 		try {
-			return  ResponseEntity.status(HttpStatus.OK).body(productservice.delete(id));
+			return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(productservice.delete(id));
 			
 		} catch (Exception e) {
-			return  ResponseEntity.status(HttpStatus.NOT_FOUND).body( "{\"error\":\"Error.no se pudede borrar .\"}");                           
+			return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body( "{\"error\":\"Error.no se pudede borrar .\"}");                           
 			
 		}
 	}

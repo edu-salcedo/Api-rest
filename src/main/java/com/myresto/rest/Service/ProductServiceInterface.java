@@ -16,3 +16,4 @@ public interface ProductServiceInterface {
    public boolean delete(Integer id)throws Exception;
 
 }
+
