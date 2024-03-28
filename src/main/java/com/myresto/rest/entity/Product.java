@@ -1,10 +1,13 @@
 package com.myresto.rest.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -23,7 +26,10 @@ public class Product {
 	private float price;
 	private boolean state;
 	
+	@OneToMany(mappedBy = "producto")
+	private List<Order>listOrder;
+	
 	@ManyToOne
-	private Category category_id;	
+	private Category category;	
  
 }
